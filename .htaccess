@@ -1,0 +1,34 @@
+
+
+RewriteEngine On
+
+# Exclude requests for specific file types from further rewrite rules
+RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif|svg)$ [NC]
+RewriteRule ^ - [L]
+
+# Exclude requests for language-specific directories
+RewriteCond %{REQUEST_URI} !^/ppp_calculator/(eng|hin|ben)/ [NC]
+
+# Exclude requests for AJAX directory
+RewriteCond %{REQUEST_URI} !^/ppp_calculator/ajax/ [NC]
+
+# Redirect requests to default language directory
+RewriteRule ^ppp_calculator/(.*)$ /ppp_calculator/eng/$1?lang= [R=301,L]
+
+# Rewrite rule to remove .php extension
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
+
+# Rewrite URLs with language and country parameters
+# RewriteRule ^ppp_calculator/(eng|hin|ben)/([^/]+)/([^/]+)/?$ /ppp_calculator/index.php?lang=$1&country=$2 [QSA,L]
+# RewriteRule ^?(eng|hin|ben)?/(.*?)$ index.php?lang=$1&country=$2 [QSA,L]
+# RewriteRule to handle URLs with language segments
+RewriteRule ^(hin|ben|esp)/(.*)$ index.php?lang=$1&country=$2 [QSA,L]
+
+# RewriteCond to exclude AJAX requests from language defaulting
+RewriteCond %{REQUEST_URI} !^/ppp_calculator/ajax/ [NC]
+
+# RewriteRule to default to 'eng' language when not specified in URL
+RewriteRule ^(.*)/(.*)$ index.php?lang=$1&country=$2 [QSA,L]
+
+
