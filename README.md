@@ -2,7 +2,7 @@
 
 The PPP (Purchasing Power Parity) Calculator is a web application designed to help job aspirants negotiate their salaries by comparing living standards between different countries. It uses PPP data to provide an accurate comparison of salaries adjusted for cost of living.
 
-## Features Of LCMS 🚀
+## Features Of PPP-Calculator🚀
 
 - Country Comparison: Compare the cost of living and salaries between different countries.
 
